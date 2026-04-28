@@ -16,7 +16,7 @@ public class PlayerBullet : Bullet
     {
         if (rb != null && playerBulletPool != null)
         { 
-            rb.linearVelocity = transform.right * bulletSpeed; // di chuyển theo hướng của viên đạn, * Time.deltaTime để di chuyển mượt hơn
+            rb.linearVelocity = transform.right * bulletSpeed; // di chuyển theo hướng của viên đạn
             Invoke(nameof(ReturnBulletLifeTime), bulletLifetime); // gọi hàm Deactivate sau bulletLifetime giây để trả viên đạn về == Thay vì
             //Destroy(gameObject, bulletLifetime);
 
