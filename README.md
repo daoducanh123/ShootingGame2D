@@ -1,4 +1,4 @@
-🎮 My First Unity Game
+🎮 My Second Unity Game
 
 Topic: Shooting Game
 Engine: Unity 6 (6000.3.9f1 LTS)
