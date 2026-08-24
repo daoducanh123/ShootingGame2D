@@ -4,18 +4,16 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
-    // Audio Sources
     [Header("Audio Sources")]
     [SerializeField] private AudioSource effectAudioSource;
     [SerializeField] private AudioSource bossAudioSource;
 
-    // Audio Clips
     [Header("Audio Clips")]
     [SerializeField] private AudioClip energyAudioClip;
     [SerializeField] private AudioClip shootingAudioClip;
     [SerializeField] private AudioClip reloadingAudioClip;
 
-    // Singleton
+    // Singleton    
     private void Awake()
     {
         if (Instance != null && Instance != this)

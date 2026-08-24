@@ -1,18 +1,30 @@
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Player : Character
 {
+    private Vector3 input;
+    private enum PlayerState { Running, Idle };
+    private PlayerState currentState;
+
+    public static Player Instance { get; private set; }
     protected override void Awake()
     {
         base.Awake();
-    }
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
 
+    }
 
     protected override void Update()
     {   
         base.Update();
         ReadInput();
-        CheckAnimation();
+        UpdateState();
     }
 
     void FixedUpdate()
@@ -20,45 +32,71 @@ public class Player : Character
         PlayerMovement();    
     }
 
-    // =============== Read Input Avoid Lagging  =================
-    private Vector3 input;
+    #region Input & Movement
     private void ReadInput()
     {
         input = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
     }
 
-    // ================ PLAYER MOVEMENT  =================
     private void PlayerMovement()
     {
-        if (rb != null)
-        {
-            rb.linearVelocity = input.normalized * moveSpeed; // ko cần * Time.deltaTime vì đã dùng velocity
-                                                                // rb.velocity = new Vector2(input.x * moveSpeed , input.y * moveSpeed ); // ko cần * Time.deltaTime vì đã dùng velocity && cái này ko có normalized nên sẽ nhanh hơn khi đi chéo
-            if (input.x < 0)
-            {
-                spriteRenderer.flipX = true; 
-            }
-            else if (input.x > 0) 
-            {
-                spriteRenderer.flipX = false; 
-            }
-
-        }
+        if (rb == null) return;
      
+        rb.linearVelocity = input.normalized * moveSpeed; 
+                                                            
+        if (input.x < 0)
+        {
+            spriteRenderer.flipX = true; 
+        }
+        else if (input.x > 0) 
+        {
+            spriteRenderer.flipX = false; 
+        }
+    }
+    #endregion
+
+    #region Player State
+    private void UpdateState()
+    {
+        switch (currentState)
+        {
+            case PlayerState.Idle:
+                HandleIdleState();
+                break;
+            case PlayerState.Running:
+                HandleRunningState();
+                break;
+        }
     }
 
-    // ==================== Player State ===================
-
-    private void CheckAnimation()
+    private void ChangeState(PlayerState playerState)
     {
-        if (input != Vector3.zero)
-        {
-            animator.SetBool("isRunning", true);
-        }
+        if (currentState == playerState) return;
         else
         {
-            animator.SetBool("isRunning", false);
+            currentState = playerState;
+        }
+    }
+    private void HandleIdleState()
+    {
+        animator.SetBool("isIdle", true);
+        animator.SetBool("isRunning", false);
+
+        if (input != Vector3.zero)
+        {
+            ChangeState(PlayerState.Running);
         }
 
     }
+    private void HandleRunningState()
+    {
+        animator.SetBool("isRunning", true);
+        animator.SetBool("isIdle", false);
+        if (input == Vector3.zero)
+        {
+            ChangeState(PlayerState.Idle);
+        }
+    }
+    #endregion
+
 }

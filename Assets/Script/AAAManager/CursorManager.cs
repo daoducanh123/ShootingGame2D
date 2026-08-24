@@ -33,9 +33,7 @@ public class CursorManager : MonoBehaviour
     private void UpdateCursor()
     {
         if (gun == null)
-        {
             return;
-        }
 
         if (gun.IsReloading())
         {
