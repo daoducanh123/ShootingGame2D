@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class Frozen : MonoBehaviour
 {
+    [SerializeField] private float frozenDamage = 5f;
     private Character frozenCharacter;
 
-    // ================== Frozen ======================
-    [SerializeField] private float frozenDamage = 5f;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         frozenCharacter = collision.GetComponent<Character>();
