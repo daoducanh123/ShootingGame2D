@@ -12,8 +12,10 @@ Unity, C#, OOP, Object Pooling, Singleton Pattern, State Machine, Coroutines, In
 
 ## 🏗️ Architecture
 
+Class Diagram
 ![UML Class Diagram](Docs/ClassDiagram.png)
+
+GameFlow Diagram
 ![UML GameFlow Diagram](Docs/GameFlow.png)
 
-The project uses object-oriented design and reusable gameplay systems for player, enemies, weapons, bullets, and game management.
 
