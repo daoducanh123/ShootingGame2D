@@ -14,7 +14,7 @@ Unity, C#, OOP, Object Pooling, Singleton Pattern, State Machine, Coroutines, In
 GameFlow Diagram
 ![UML GameFlow Diagram](Docs/GameFlow.png)
 
-Class Diagram <initial version>
+Class Diagram <initial_version>
 ![UML Class Diagram](Docs/ClassDiagram.png)
 
 
