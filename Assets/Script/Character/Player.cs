@@ -69,14 +69,7 @@ public class Player : Character
         }
     }
 
-    private void ChangeState(PlayerState playerState)
-    {
-        if (currentState == playerState) return;
-        else
-        {
-            currentState = playerState;
-        }
-    }
+
     private void HandleIdleState()
     {
         animator.SetBool("isIdle", true);
@@ -84,7 +77,7 @@ public class Player : Character
 
         if (input != Vector3.zero)
         {
-            ChangeState(PlayerState.Running);
+            currentState = PlayerState.Running;
         }
 
     }
@@ -94,7 +87,7 @@ public class Player : Character
         animator.SetBool("isIdle", false);
         if (input == Vector3.zero)
         {
-            ChangeState(PlayerState.Idle);
+            currentState = PlayerState.Idle;
         }
     }
     #endregion
