@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    [SerializeField] private GameObject firePos;
-    private GameManager gameManager;
-    private AudioManager audioManager;
-    PlayerBulletPool playerBulletPool;
+    [Header("Ammo UI")]
+    [SerializeField] private TextMeshProUGUI ammoText;
 
+    [Header("Gun")]
+    [SerializeField] private int maxAmmo = 10;
+    [SerializeField] private GameObject firePos;
+    [SerializeField] private float reloadCooldown = 2f;
+
+    private int currentAmmo;
+    private bool isReloading = false;
+    private float reloadTimer = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerBulletPool = PlayerBulletPool.Instance;
-        audioManager = AudioManager.Instance;
-        gameManager = GameManager.Instance;
         currentAmmo = maxAmmo;
         UpdateAmmoText();
-
     }
 
     // Update is called once per frame
@@ -29,33 +31,23 @@ public class Gun : MonoBehaviour
         GunRotation();
     }
 
-    // ================== Ammo Text =========================
-    [SerializeField] private TextMeshProUGUI ammoText;
-
+    #region AmmoUI
     private void UpdateAmmoText()
     {
-        if (ammoText != null)
-        {
-            if (currentAmmo == 0)
-            {
-                ammoText.text = "Empty";
+        if (ammoText == null) return;
 
-            }
-            else
-            {
-                ammoText.text = currentAmmo.ToString();
-            }
+        if (currentAmmo == 0)
+        {
+            ammoText.text = "Empty";
+        }
+        else
+        {
+            ammoText.text = currentAmmo.ToString();
         }
     }
+    #endregion
 
-
-    // ================= Gun Ammo =================
-    [SerializeField] private int maxAmmo = 10;
-    private int currentAmmo;
-
-
-
-    // ================= Gun Rotation =================
+    #region Gun
     private void GunRotation()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -71,21 +63,17 @@ public class Gun : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
     }
-
-    // ================= Gun Reloading =================    
     public bool IsReloading()
     {
         return isReloading;
     }
 
-    private bool isReloading = false;
-    private float reloadTimer = 0f;
-    [SerializeField] private float reloadCooldown = 2f;
     private void GunReloading()
     {
         if (!isReloading && currentAmmo < maxAmmo && Input.GetKeyDown(KeyCode.R))
         {
-            audioManager.PlayReloadingAudio(); 
+            if (AudioManager.Instance == null) return;
+            AudioManager.Instance.PlayReloadingAudio(); 
             isReloading = true;
             reloadTimer = 0f;
         }
@@ -101,27 +89,26 @@ public class Gun : MonoBehaviour
             }
         }
         else return;
-
-
     }
-    // ================= Gun Shooting =================
-
     private void GunShooting()
     {
         if (!isReloading && currentAmmo > 0 && Input.GetMouseButtonDown(0))
         {
-            audioManager.PlayShootingAudio();
+            if (AudioManager.Instance == null) return;
+            if (PlayerBulletPool.Instance == null) return;
 
+            AudioManager.Instance.PlayShootingAudio();
             --currentAmmo; UpdateAmmoText();
-            if (playerBulletPool != null)
-            {
-                GameObject bullet = playerBulletPool.GetBullet(); 
-                bullet.transform.position = firePos.transform.position;
-                bullet.transform.rotation = firePos.transform.rotation;
-                bullet.GetComponent<PlayerBullet>().BulletMovement();              
-            }
-        }   
 
+
+            GameObject bullet = PlayerBulletPool.Instance.GetBullet();
+            if (bullet == null) return;
+            if (firePos == null) return;
+            bullet.transform.position = firePos.transform.position;
+            bullet.transform.rotation = firePos.transform.rotation;
+            bullet.GetComponent<PlayerBullet>().BulletMovement();              
+        }   
     }
- }
+    #endregion
+}
 

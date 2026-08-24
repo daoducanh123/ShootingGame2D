@@ -2,11 +2,12 @@ using UnityEngine;
 using System.Collections.Generic;
 public class PlayerBulletPool : MonoBehaviour
 {
-    // ===================== Object Pooling =========================
+
     [SerializeField] private int poolSize = 40;
     [SerializeField] private  GameObject bulletPrefab;
+    
+    public static PlayerBulletPool Instance { get; private set; }
     private Queue<GameObject> pool = new Queue<GameObject>(); 
-    public static PlayerBulletPool Instance;
 
     // ============= Singleton pattern =============
     private void Awake()
@@ -21,6 +22,12 @@ public class PlayerBulletPool : MonoBehaviour
             Instance = this;
         }
 
+        CreatePool();
+    }
+
+    private void CreatePool()
+    {
+        if (bulletPrefab == null) return;
 
         for (int i = 0; i < poolSize; ++i)
         {
@@ -29,7 +36,6 @@ public class PlayerBulletPool : MonoBehaviour
             pool.Enqueue(bullet);
         }
     }
-
 
     public GameObject GetBullet()
     {
@@ -42,10 +48,11 @@ public class PlayerBulletPool : MonoBehaviour
         }
         else
         {
+            if (bulletPrefab == null) return null;
             Debug.Log("Pool empty return bulletTmp");
-            GameObject bulletTMP = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            GameObject bulletTemp = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 
-            return bulletTMP;
+            return bulletTemp;
         }
     }
 
@@ -54,8 +61,4 @@ public class PlayerBulletPool : MonoBehaviour
         returnBullet.SetActive(false);
         pool.Enqueue(returnBullet);
     }
-    
-        
-
-    
 }

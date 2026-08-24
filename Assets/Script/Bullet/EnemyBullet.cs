@@ -5,13 +5,12 @@ public class EnemyBullet : Bullet
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player = collision.GetComponent<Player>();
-        if (player != null)
-        {
-            Debug.Log("Player Hit By BulletEnemy");
-            player.TakeDamage(bulletDamage);
-        }
-        else Debug.Log("Player null hit");
+
+        if (!collision.CompareTag("Player")) return;
+       if (Player.Instance == null) return;
+ 
+       Debug.Log("Player Hit By BulletEnemy");
+       Player.Instance.TakeDamage(bulletDamage);
     }
 
     public void EnemyBulletMovement(Vector3 direction)
