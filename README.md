@@ -1,44 +1,19 @@
-🎮 My Second Unity Game
+# 🎮 2D Top-Down Shooter
 
-Topic: Shooting Game
-Engine: Unity 6 (6000.3.9f1 LTS)
+A 2D top-down shooter developed with **Unity and C#**.
 
-📚 Key Things I Learned
+🎮 **Play Game** | 🎥 **Gameplay Video**
 
-🔹 Unity Basics
+![Gameplay](Docs/gameplay.gif)
 
-Writing C# scripts
-Using GameObjects, Components, and Prefabs
+## 🛠️ Technologies
 
-🔹 Player Movement
+Unity, C#, OOP, Object Pooling, Singleton Pattern, State Machine, Coroutines, Interface.
 
-Handling keyboard input
-Moving the character in different directions
+## 🏗️ Architecture
 
-🔹 Shooting System
+![UML Class Diagram](Docs/ClassDiagram.png)
+![UML GameFlow Diagram](GameFlow.png)
 
-Spawning bullets with Prefabs
-Bullet movement and collision detection
-Destroying bullets after impact or time
+The project uses object-oriented design and reusable gameplay systems for player, enemies, weapons, bullets, and game management.
 
-🔹 Vectors & Math
-
-Using vectors for movement
-Finding the direction from player → mouse
-Rotating weapons toward the cursor
-
-🔹 OOP Fundamentals
-
-Separating logic into different scripts
-Player, Enemy, and Bullet classes
-Basic encapsulation and inheritance
-
-🔹 UI
-
-Health bar
-Score display
-
-🔹 Audio
-
-Shooting sound effects
-Using Audio Source and Audio Clip
