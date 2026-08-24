@@ -296,9 +296,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 255890687}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -686, y: 512}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 184.93506, y: -105.150024}
   m_SizeDelta: {x: 369.87012, y: 210.30005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &227128853
@@ -825,7 +825,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &294062350
 Transform:
   m_ObjectHideFlags: 0
@@ -908,9 +908,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e3e529d622e6c4fbc5afc2203e1a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  enemyKilledText: {fileID: 227128853}
   maxEnergy: 10
   energyBar: {fileID: 344398511}
-  enemyKilledText: {fileID: 227128853}
 --- !u!1001 &455098401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16253,9 +16253,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2297b1b875b4f2e4f8eaf7ded123e5de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  reloadingCursor: {fileID: 2800000, guid: 9ce7b7c5ef5a26542b8a70de702aa864, type: 3}
   normalCursor: {fileID: 2800000, guid: f94021566366adb4a87ab860fcddfb10, type: 3}
   shootingCursor: {fileID: 2800000, guid: 51b921e7d4f7bf740805ce759c3d5c83, type: 3}
+  reloadingCursor: {fileID: 2800000, guid: 9ce7b7c5ef5a26542b8a70de702aa864, type: 3}
 --- !u!1 &1289020535
 GameObject:
   m_ObjectHideFlags: 0
@@ -17557,7 +17557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4859380058391396413, guid: fe3e007011afd7c4ba0e6b6ca97767f0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7334861826156518762, guid: fe3e007011afd7c4ba0e6b6ca97767f0, type: 3}
       propertyPath: m_Camera
