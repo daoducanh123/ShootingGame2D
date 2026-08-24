@@ -6,6 +6,8 @@ public class EnemyMedic : Enemy
     [SerializeField] private GameObject healthPackPrefab;
     protected override void Die()
     {
+        if (healthPackPrefab == null) return;
+
         GameObject heathPack = Instantiate(healthPackPrefab,transform.position,Quaternion.identity);
         base.Die();
         Destroy(heathPack,8f);

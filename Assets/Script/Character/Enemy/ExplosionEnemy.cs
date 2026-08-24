@@ -2,28 +2,31 @@ using UnityEngine;
 
 public class ExplosionEnemy : Enemy
 {
+    [Header("Prefabs")]
     [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private GameObject firePrefab;
+
+    [Header("Fire Stats")]
     [SerializeField] private float numberOfFires = 8f;
     [SerializeField] private float fireCircleDuration = 4f;
-    private float fireRadius = 3f;
+    [SerializeField] private float fireRadius = 3f;
 
 
-    // ================ Create Explosion =============
     private void CreateExplosion()
     {
+        if (explosionPrefab == null) return;
+
         GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(explosion, 0.5f);
     }
-    // ================ Create Fire ====================
 
     private void CreateFire()
     {
-        float angleStep = 360f / numberOfFires;
+        if (firePrefab == null) return;
 
+        float angleStep = 360f / numberOfFires;
         for (int i = 0; i < numberOfFires; ++i)
         {
-
             float angle = angleStep * i * Mathf.Deg2Rad;
 
             Vector3 fireDirection = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle),0);
@@ -34,8 +37,6 @@ public class ExplosionEnemy : Enemy
         }
     }
 
-    // =============== Die Explosion ================
-
     protected override void Die()
     {
         CreateExplosion();
@@ -43,11 +44,9 @@ public class ExplosionEnemy : Enemy
         base.Die(); // die để dưới
     }
 
-    // ================ Die Impact On Player ====================
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player = collision.GetComponent<Player>();
-        if (player != null)
+        if (collision.CompareTag("Player"))
         {
             CreateExplosion();
             CreateFire();

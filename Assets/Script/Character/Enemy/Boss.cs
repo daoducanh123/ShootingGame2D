@@ -8,6 +8,7 @@ public class Boss : Enemy
     [SerializeField] private float intervalSkillsTime = 4f;
     [SerializeField] private float numberOfBullets = 8f;
     [SerializeField] private float teleportRadius = 8f;
+
     [Header("Prefabs")]
     [SerializeField] private GameObject enemyBulletPrefab;
     [SerializeField] private GameObject miniEnemyPrefab;
