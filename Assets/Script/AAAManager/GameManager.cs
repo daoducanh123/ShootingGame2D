@@ -5,8 +5,21 @@ using UnityEngine.UI;
 [DefaultExecutionOrder(-100)]
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager Instance {get; private set;}
     private Boss boss;
+
+
+    [Header("Text")]
+    [SerializeField] private TextMeshProUGUI enemyKilledText;
+
+    private int numberEnemyDie = 0;
+
+
+    [Header("Energy")]
+    [SerializeField] private float maxEnergy = 10f;
+    [SerializeField] private Image energyBar;
+
+    private float currentEnergy = 0f;
 
     private void Awake()
     {
@@ -15,64 +28,63 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        Instance = this;
 
+        Instance = this;
 
         boss = FindAnyObjectByType<Boss>();
     }
+
     private void Start()
     {
-            UpdateEnergyBar();
-            UpdateEnemyKilledText();
-            boss.gameObject.SetActive(false);
+        UpdateEnergyBar();
+        UpdateEnemyKilledText();
+
+        boss.gameObject.SetActive(false);
     }
 
-    //  ====================== Energy Image ===============================
-    [SerializeField] private float maxEnergy = 10f;
-    [SerializeField] private Image energyBar;
-    private float currentEnergy = 0f;
+    #region Energy Bar
     public void IncreaseCurrentEnergy(float valueTaken)
     {
         currentEnergy += valueTaken;
+
         currentEnergy = Mathf.Min(currentEnergy, maxEnergy);
+
         UpdateEnergyBar();
+
         if (currentEnergy >= maxEnergy)
         {
             Debug.Log("Boss spawn");
+
             boss.gameObject.SetActive(true);
         }
-        
     }
-
 
     private void UpdateEnergyBar()
     {
-        if (energyBar != null)
+        if (energyBar == null)
         {
-            energyBar.fillAmount = currentEnergy/maxEnergy;
+            return;
         }
+            energyBar.fillAmount = currentEnergy / maxEnergy;
     }
+    #endregion
 
-
-    //  ====================== EnemyKilledText ===============================
-
-    [SerializeField] private TextMeshProUGUI enemyKilledText;
-    private int numberEnemyDie = 0;
+    #region Kill Text
     public void EnemyKilled(int num)
     {
         numberEnemyDie += num;
+
         UpdateEnemyKilledText();
     }
 
+
     private void UpdateEnemyKilledText()
     {
-        if (enemyKilledText != null)
+        if (enemyKilledText == null)
         {
-            enemyKilledText.text = "Killed:" + numberEnemyDie.ToString();
+            return;
         }
+            enemyKilledText.text = "Killed:" + numberEnemyDie.ToString();
     }
-
-
-
+    # endregion
 }
-
