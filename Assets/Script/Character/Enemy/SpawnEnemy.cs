@@ -3,17 +3,10 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
-
-    private Player player;
     [SerializeField] private GameObject[] spawnEnemies;
     [SerializeField] private Transform[] spawnPos;
-    [SerializeField] private float spawnTimeInterval = 5f;
+    [SerializeField] private float spawnTimeInterval = 2f;
     
-    private void Awake()
-    {
-        player = FindAnyObjectByType<Player>();
-    }
-
     private void Start()
     {
         StartCoroutine(SpawnEnemiesCoroutine());
@@ -21,9 +14,8 @@ public class SpawnEnemy : MonoBehaviour
 
     private IEnumerator SpawnEnemiesCoroutine()
     {
-        while (player != null)
+        while (Player.Instance != null)
         {
-
             yield return new WaitForSeconds(spawnTimeInterval);
             GameObject enemyToSpawn = spawnEnemies[Random.Range(0, spawnEnemies.Length)];
             Transform posToSpawn = spawnPos[Random.Range(0, spawnPos.Length)];
