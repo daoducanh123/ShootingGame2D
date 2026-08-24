@@ -2,48 +2,63 @@ using UnityEngine;
 
 public class CursorManager : MonoBehaviour
 {
-    [SerializeField] private Texture2D reloadingCursor;
+
+    [Header("Cursor Textures")]
     [SerializeField] private Texture2D normalCursor;
     [SerializeField] private Texture2D shootingCursor;
- 
-    private Gun gun;
-    private Vector2 hotSpot;
+    [SerializeField] private Texture2D reloadingCursor;
 
-    void Awake()
+    private Gun gun;
+
+    private Vector2 cursorHotspot;
+    private void Awake()
     {
         gun = FindAnyObjectByType<Gun>();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
-        hotSpot = new Vector2 (normalCursor.width /2, normalCursor.height /2);
-        Cursor.SetCursor(normalCursor, hotSpot, CursorMode.Auto);
+        cursorHotspot = new Vector2(
+            normalCursor.width / 2f,
+            normalCursor.height / 2f
+        );
+
+        SetCursor(normalCursor);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-            SetCursor();
+        UpdateCursor();
     }
 
-    private void SetCursor()
+    private void UpdateCursor()
     {
-        if (gun != null)
+        if (gun == null)
         {
-            if (gun.IsReloading())
-            {
-                Cursor.SetCursor(reloadingCursor, hotSpot, CursorMode.Auto);
-            }
-            else if (!gun.IsReloading() && Input.GetMouseButton(0))
-            {
-                Cursor.SetCursor(shootingCursor, hotSpot, CursorMode.Auto);
-            }
-            else
-            {
-                Cursor.SetCursor(normalCursor, hotSpot, CursorMode.Auto);
-            }
+            return;
         }
-        else Debug.Log("gun null cursor ");
+
+        if (gun.IsReloading())
+        {
+            SetCursor(reloadingCursor);
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            SetCursor(shootingCursor);
+        }
+        else
+        {
+            SetCursor(normalCursor);
+        }
     }
+
+    private void SetCursor(Texture2D cursorTexture)
+    {
+        Cursor.SetCursor(
+            cursorTexture,
+            cursorHotspot,
+            CursorMode.Auto
+        );
+    }
+
 }
