@@ -2,7 +2,6 @@
 
 A 2D top-down shooter developed with **Unity and C#**.
 
-🎮 **Play Game** | 🎥 **Gameplay Video**
 
 ![Gameplay](Docs/gameplay.gif)
 
@@ -12,10 +11,12 @@ Unity, C#, OOP, Object Pooling, Singleton Pattern, State Machine, Coroutines, In
 
 ## 🏗️ Architecture
 
-Class Diagram
-![UML Class Diagram](Docs/ClassDiagram.png)
-
 GameFlow Diagram
 ![UML GameFlow Diagram](Docs/GameFlow.png)
+
+Class Diagram <initial version>
+![UML Class Diagram](Docs/ClassDiagram.png)
+
+
 
 
