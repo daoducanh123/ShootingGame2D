@@ -1,6 +1,8 @@
 using UnityEngine;
 public class CursorManager : MonoBehaviour
 {
+    public static CursorManager Instance { get; private set; }
+
 
     [Header("Cursor Textures")]
     [SerializeField] private Texture2D normalCursor;
@@ -13,6 +15,12 @@ public class CursorManager : MonoBehaviour
     private void Awake()
     {
         gun = FindAnyObjectByType<Gun>();
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
     }
 
     private void Start()

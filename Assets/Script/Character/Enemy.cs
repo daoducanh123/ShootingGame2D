@@ -2,22 +2,20 @@ using UnityEngine;
 
 public abstract class Enemy : Character
 {
-    protected Player player;
     [SerializeField] protected float damageEnemyDealt = 4f;
 
 
     protected override void Awake()
     {
         base.Awake();
-        player = FindAnyObjectByType<Player>();
     }
 
 
     protected override void Update()
     {
         base.Update();
-        if (player != null) { // ko check luc player die la null
-            movementDirection = player.transform.position - transform.position;
+        if (Player.Instance != null) { // ko check luc player die la null
+            movementDirection = Player.Instance.transform.position - transform.position;
         }
 
     }
@@ -33,23 +31,21 @@ public abstract class Enemy : Character
     protected void EnemyMovement()
     {
         // neu ko check null thi se bi loi khi enemy spawn ma player chua spawn
-        if (player != null)
-        {
-            rb.linearVelocity = movementDirection.normalized * moveSpeed;
+        if (Player.Instance == null) return;
+     
+        rb.linearVelocity = movementDirection.normalized * moveSpeed;
 
-            if (transform.position.x <= player.transform.position.x)
-            {
-                spriteRenderer.flipX = false;
-            }
-            else
-            {
-                spriteRenderer.flipX = true;
-            }
+        if (transform.position.x <= Player.Instance.transform.position.x)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else
+        {
+            spriteRenderer.flipX = true;
         }
     }
 
-    // ================ Killed Text =========================
-
+    #region Killed UI
     protected override void Die()
     {
         if (!isDead)
@@ -60,23 +56,32 @@ public abstract class Enemy : Character
         }
         else return;
     }
+    #endregion
 
+
+    #region Combat
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            SpriteRenderer spriteRenderer = player.GetComponent<SpriteRenderer>();
+            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+            if (spriteRenderer == null) return;
             spriteRenderer.color = Color.green;
-            player.TakeDamage(damageEnemyDealt);
+
+            if (Player.Instance == null) return;
+            Player.Instance.TakeDamage(damageEnemyDealt);
         }
     }
     protected void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            SpriteRenderer spriteRenderer = player.GetComponent<SpriteRenderer>();
+            SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+            if (spriteRenderer == null) return;
             spriteRenderer.color = Color.green;
-            player.TakeDamage(damageEnemyDealt * Time.deltaTime);
+
+            if (Player.Instance == null) return;
+            Player.Instance.TakeDamage(damageEnemyDealt * Time.deltaTime);
         }
     }
 
@@ -84,8 +89,10 @@ public abstract class Enemy : Character
     {
         if (collision.CompareTag("Player"))
         {
-            player.SetDefaultColor();
+            if (Player.Instance == null) return;
+            Player.Instance.SetDefaultColor();
         }
     }
- 
+    #endregion
+
 }
