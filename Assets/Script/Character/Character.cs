@@ -170,7 +170,7 @@ public abstract class Character : MonoBehaviour, ICharacter
         if (!isFired) return;
 
         fireTimer += Time.deltaTime;
-        currentHealth -= damagePerSecond;
+        currentHealth -= damagePerSecond * Time.deltaTime;
         currentHealth = Mathf.Max(currentHealth, 0);
 
         if(currentHealth <= 0)

@@ -183,8 +183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExplosionEnemy
   maxHealth: 50
-  moveSpeed: 5
   hpBar: {fileID: 793647615102425170}
+  moveSpeed: 5
   slowCooldown: 0.5
   frozenCoolDown: 5
   fireCoolDown: 1
@@ -193,6 +193,7 @@ MonoBehaviour:
   firePrefab: {fileID: 6997014244109141648, guid: f8314b3aa2ebfc542a587945b495fff8, type: 3}
   numberOfFires: 8
   fireCircleDuration: 4
+  fireRadius: 3
 --- !u!95 &1700476441461256333
 Animator:
   serializedVersion: 7

@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         UpdateEnergyBar();
         UpdateEnemyKilledText();
 
+        if (boss == null) return;
         boss.gameObject.SetActive(false);
     }
 
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Boss spawn");
 
+            if (boss == null) return;
             boss.gameObject.SetActive(true);
         }
     }
@@ -65,7 +67,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-            energyBar.fillAmount = currentEnergy / maxEnergy;
+        energyBar.fillAmount = (float)currentEnergy / (float)maxEnergy;
     }
     #endregion
 

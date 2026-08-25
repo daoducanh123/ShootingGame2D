@@ -164,5 +164,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a50077262027bd4cb563ab4b9af17cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnergyOrb
-  maxEnergy: 0
-  energyBar: {fileID: 0}
+  energyValue: 2
