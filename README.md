@@ -9,11 +9,12 @@ A 2D top-down shooter developed with **Unity and C#**.
 
 ![Boss Image](Docs/Boss.png)
 ![Basic Image](Docs/BasicEnemy.png)
-![EnergyEnemy Image](Docs/EnergyEnemys.png)
+![EnergyEnemy Image](Docs/EnergyEnemy.png)
 ![ExplosionEnemy Image](Docs/ExplosionEnemy.png)
 ![FrozenEnemy Image](Docs/FrozenEnemy.png)
 ![MedicEnemy Image](Docs/MedicEnemy.png)
 ![MiniEnemy Image](Docs/MiniEnemy.png)
+![Player Image](Docs/Player.png)
 </details>
 
 ## 🛠️ Technologies
