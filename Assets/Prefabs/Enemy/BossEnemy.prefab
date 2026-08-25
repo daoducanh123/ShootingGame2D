@@ -208,14 +208,15 @@ MonoBehaviour:
   hpBar: {fileID: 8680711075277001719}
   moveSpeed: 5
   slowCooldown: 0.5
-  frozenCoolDown: 1
-  fireCoolDown: 1
+  frozenCoolDown: 3
+  fireCoolDown: 3
   damageEnemyDealt: 10
-  intervalSkillsTime: 2
+  intervalSkillsTime: 1
   numberOfBullets: 12
-  teleportRadius: 8
+  teleportRadius: 10
   enemyBulletPrefab: {fileID: 1567616765442676252, guid: 38e51bc36f9cb6f409031c7e2d390f26, type: 3}
   miniEnemyPrefab: {fileID: 6268701337440262967, guid: 77f8bac3cc88ed44696ef12b01a81efe, type: 3}
+  keyPrefab: {fileID: 7314654334671843323, guid: ea28d34a40595464f9df9b88140414e0, type: 3}
 --- !u!70 &2431579155293156420
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

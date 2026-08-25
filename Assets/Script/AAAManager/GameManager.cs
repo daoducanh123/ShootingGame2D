@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject gameOverMenu;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject gameWinMenu;
 
 
     [Header("Text")]
@@ -74,7 +75,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        energyBar.fillAmount = (float)currentEnergy / (float)maxEnergy;
+        energyBar.fillAmount = currentEnergy / maxEnergy;
     }
     #endregion
 
@@ -105,47 +106,69 @@ public class GameManager : MonoBehaviour
         mainMenu.SetActive(true);
         gameOverMenu.SetActive(false);
         pauseMenu.SetActive(false);
+        gameWinMenu.SetActive(false);
+
         Time.timeScale = 0f;
     }
     public void PauseMenu()
     {
-        if (mainMenu == null || gameOverMenu == null || pauseMenu == null) return;
+        if (mainMenu == null || gameOverMenu == null || pauseMenu == null || gameWinMenu == null) return;
 
         pauseMenu.SetActive(true);
         mainMenu.SetActive(false);
         gameOverMenu.SetActive(false);
+        gameWinMenu.SetActive(false);
+
         Time.timeScale = 0f;
 
     }
     public void GameOverMenu()
     {
-        if (mainMenu == null || gameOverMenu == null || pauseMenu == null) return;
+        if (mainMenu == null || gameOverMenu == null || pauseMenu == null || gameWinMenu == null) return;
 
         gameOverMenu.SetActive(true);
         mainMenu.SetActive(false);
         pauseMenu.SetActive(false);
+        gameWinMenu.SetActive(false);
+
         Time.timeScale = 0f;
 
     }
 
     public void StartGame()
     {
-        if (mainMenu == null || gameOverMenu == null || pauseMenu == null) return;
+        if (mainMenu == null || gameOverMenu == null || pauseMenu == null || gameWinMenu == null) return;
 
         gameOverMenu.SetActive(false);
         mainMenu.SetActive(false);
         pauseMenu.SetActive(false);
+        gameWinMenu.SetActive(false);
         Time.timeScale = 1f;
 
     }
     public void ResumeGame()
     {
-        if (mainMenu == null || gameOverMenu == null || pauseMenu == null) return;
+        if (mainMenu == null || gameOverMenu == null || pauseMenu == null || gameWinMenu == null) return;
 
         gameOverMenu.SetActive(false);
         mainMenu.SetActive(false);
         pauseMenu.SetActive(false);
+        gameWinMenu.SetActive(false);
+
         Time.timeScale = 1f;
+
+    }
+
+    public void GameWinMenu()
+    {
+        if (mainMenu == null || gameOverMenu == null || pauseMenu == null || gameWinMenu == null) return;
+
+        gameWinMenu.SetActive(true);
+        gameOverMenu.SetActive(false);
+        mainMenu.SetActive(false);
+        pauseMenu.SetActive(false);
+
+        Time.timeScale = 0f;
 
     }
 

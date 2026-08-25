@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa263b2e247e4db4f9aaccbdbc401d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  maxHealth: 100
+  maxHealth: 1002.9
   hpBar: {fileID: 5949736210927546699}
   moveSpeed: 6.5
   slowCooldown: 0.5

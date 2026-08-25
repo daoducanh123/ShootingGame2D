@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 
+
 public class Boss : Enemy
 {
     [Header("Boss Skills")]
@@ -12,7 +13,7 @@ public class Boss : Enemy
     [Header("Prefabs")]
     [SerializeField] private GameObject enemyBulletPrefab;
     [SerializeField] private GameObject miniEnemyPrefab;
-
+    [SerializeField] private GameObject keyPrefab;
 
     protected override void Start()
     {
@@ -25,7 +26,7 @@ public class Boss : Enemy
         while (Player.Instance != null) 
         {
             yield return new WaitForSeconds(intervalSkillsTime);
-            int skill = Random.Range(0,4);
+            int skill = Random.Range(0, 4);
             switch (skill)
             {
                 case 0:
@@ -70,6 +71,15 @@ public class Boss : Enemy
     private void SpawnMiniEnemy()
     {
         if (miniEnemyPrefab == null) return;
-        GameObject miniEnemy = Instantiate(miniEnemyPrefab, transform.position, transform.rotation);
+        Instantiate(miniEnemyPrefab, transform.position, transform.rotation);
+    }
+
+    protected override void Die()
+    {
+        if (isDead) return;
+        base.Die();
+
+        if (keyPrefab == null) return;
+        Instantiate(keyPrefab, transform.position, Quaternion.identity);
     }
 }
