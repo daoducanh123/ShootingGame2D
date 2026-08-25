@@ -175,7 +175,6 @@ public abstract class Character : MonoBehaviour, ICharacter
 
         if(currentHealth <= 0)
         {
-            isDead = true;
             Die();
         }
 
