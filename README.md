@@ -2,24 +2,43 @@
 
 A 2D top-down shooter developed with **Unity and C#**.
 
+## 🎥 Gameplay Demo
+
+[▶️ Watch Gameplay Demo](Docs/Demo.mp4)
+
 <details>
-<summary>🎮 View Gameplay Screenshot</summary>
+<summary>📸 View Gameplay Screenshots</summary>
 
 <br>
 
 ![Boss Image](Docs/Boss.png)
-![Basic Image](Docs/BasicEnemy.png)
-![EnergyEnemy Image](Docs/EnergyEnemy.png)
-![ExplosionEnemy Image](Docs/ExplosionEnemy.png)
-![FrozenEnemy Image](Docs/FrozenEnemy.png)
-![MedicEnemy Image](Docs/MedicEnemy.png)
-![MiniEnemy Image](Docs/MiniEnemy.png)
-![Player Image](Docs/Player.png)
+
+![Basic Enemy](Docs/BasicEnemy.png)
+
+![Energy Enemy](Docs/EnergyEnemy.png)
+
+![Explosion Enemy](Docs/ExplosionEnemy.png)
+
+![Frozen Enemy](Docs/FrozenEnemy.png)
+
+![Medic Enemy](Docs/MedicEnemy.png)
+
+![Mini Enemy](Docs/MiniEnemy.png)
+
+![Player](Docs/Player.png)
+
 </details>
 
 ## 🛠️ Technologies
 
-Unity, C#, OOP, Object Pooling, Singleton Pattern, State Machine, Coroutines, Interface.
+- Unity
+- C#
+- Object-Oriented Programming (OOP)
+- Object Pooling
+- Singleton Pattern
+- State Machine
+- Coroutines
+- Interfaces
 
 ## 🏗️ Architecture
 
