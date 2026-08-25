@@ -181,6 +181,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   bulletSpeed: 10
   bulletLifetime: 2
-  bulletDamage: 8
+  bulletDamage: 20
   bloodPrefab: {fileID: 3767752109129112469, guid: e731d8dadfdbad546b4d3eeae58d11ee, type: 3}
-  slowValue: 3
+  slowValue: 5

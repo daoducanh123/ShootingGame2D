@@ -205,16 +205,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss
   maxHealth: 500
-  moveSpeed: 5
   hpBar: {fileID: 8680711075277001719}
+  moveSpeed: 5
   slowCooldown: 0.5
   frozenCoolDown: 1
   fireCoolDown: 1
   damageEnemyDealt: 10
   intervalSkillsTime: 2
-  enemyBulletPrefab: {fileID: 1567616765442676252, guid: 38e51bc36f9cb6f409031c7e2d390f26, type: 3}
   numberOfBullets: 12
   teleportRadius: 8
+  enemyBulletPrefab: {fileID: 1567616765442676252, guid: 38e51bc36f9cb6f409031c7e2d390f26, type: 3}
   miniEnemyPrefab: {fileID: 6268701337440262967, guid: 77f8bac3cc88ed44696ef12b01a81efe, type: 3}
 --- !u!70 &2431579155293156420
 CapsuleCollider2D:
