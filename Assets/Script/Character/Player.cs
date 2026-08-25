@@ -25,6 +25,7 @@ public class Player : Character
         base.Update();
         ReadInput();
         UpdateState();
+        HandleState();
     }
 
     void FixedUpdate()
@@ -36,6 +37,11 @@ public class Player : Character
     private void ReadInput()
     {
         input = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (gameManager == null) return;
+            gameManager.PauseMenu();
+        }
     }
 
     private void PlayerMovement()
@@ -56,7 +62,7 @@ public class Player : Character
     #endregion
 
     #region Player State
-    private void UpdateState()
+    private void HandleState()
     {
         switch (currentState)
         {
@@ -69,27 +75,42 @@ public class Player : Character
         }
     }
 
+    private void UpdateState()
+    {
+        switch (currentState)
+        {
+            case PlayerState.Idle:
+                if (input != Vector3.zero)
+                {
+                    currentState = PlayerState.Running;
+                }
+                break;
+            case PlayerState.Running:
+                if (input == Vector3.zero)
+                {
+                    currentState = PlayerState.Idle;
+                }
+                break;
+        }
+    }
+
 
     private void HandleIdleState()
     {
         animator.SetBool("isIdle", true);
         animator.SetBool("isRunning", false);
-
-        if (input != Vector3.zero)
-        {
-            currentState = PlayerState.Running;
-        }
-
     }
     private void HandleRunningState()
     {
         animator.SetBool("isRunning", true);
         animator.SetBool("isIdle", false);
-        if (input == Vector3.zero)
-        {
-            currentState = PlayerState.Idle;
-        }
     }
     #endregion
 
+    protected override void Die()
+    {
+        base.Die();
+        if (gameManager == null) return;
+        gameManager.GameOverMenu();
+    }
 }
