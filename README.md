@@ -4,7 +4,7 @@ A 2D top-down shooter developed with **Unity and C#**.
 
 ## 🎥 Gameplay Demo
 
-[▶️ Watch Gameplay Demo](Docs/Demo.mp4)
+[▶️ Watch Gameplay Demo](https://youtu.be/6_Sq2cUDy1E)
 
 <details>
 <summary>📸 View Gameplay Screenshots</summary>
@@ -12,19 +12,12 @@ A 2D top-down shooter developed with **Unity and C#**.
 <br>
 
 ![Boss Image](Docs/Boss.png)
-
 ![Basic Enemy](Docs/BasicEnemy.png)
-
 ![Energy Enemy](Docs/EnergyEnemy.png)
-
 ![Explosion Enemy](Docs/ExplosionEnemy.png)
-
 ![Frozen Enemy](Docs/FrozenEnemy.png)
-
 ![Medic Enemy](Docs/MedicEnemy.png)
-
 ![Mini Enemy](Docs/MiniEnemy.png)
-
 ![Player](Docs/Player.png)
 
 </details>
