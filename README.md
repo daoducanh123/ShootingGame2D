@@ -3,7 +3,7 @@
 A 2D top-down shooter developed with **Unity and C#**.
 
 
-![Gameplay](Docs/gameplay.gif)
+![Gameplay](Docs/Boss.png)
 
 ## 🛠️ Technologies
 
