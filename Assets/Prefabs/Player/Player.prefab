@@ -105,8 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99717f5be23e244b9288c2e53851423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  firePos: {fileID: 785768784513489808}
+  ammoText: {fileID: 0}
   maxAmmo: 20
+  firePos: {fileID: 785768784513489808}
   reloadCooldown: 0.5
 --- !u!1 &785768784513489808
 GameObject:
@@ -170,7 +171,7 @@ Transform:
   m_GameObject: {fileID: 1040690892155404483}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.742, y: 1.691, z: 0}
+  m_LocalPosition: {x: 1.48, y: 2.342, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -323,8 +324,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   maxHealth: 100
-  moveSpeed: 6.5
   hpBar: {fileID: 5949736210927546699}
+  moveSpeed: 6.5
   slowCooldown: 0.5
   frozenCoolDown: 2
   fireCoolDown: 2
