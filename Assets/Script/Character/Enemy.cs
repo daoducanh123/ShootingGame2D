@@ -45,18 +45,15 @@ public abstract class Enemy : Character
         }
     }
 
-    #region Killed UI
     protected override void Die()
     {
-        if (!isDead)
-        {
-            isDead = true;
-            Destroy(gameObject);
-            gameManager.EnemyKilled(1);
-        }
-        else return;
+        if (isDead) return;
+        isDead = true;
+        
+        Destroy(gameObject);
+        if (gameManager == null) return;
+        gameManager.EnemyKilled(1);
     }
-    #endregion
 
 
     #region Combat

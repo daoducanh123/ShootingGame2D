@@ -6,10 +6,12 @@ public class EnemyMedic : Enemy
     [SerializeField] private GameObject healthPackPrefab;
     protected override void Die()
     {
-        if (healthPackPrefab == null) return;
+        if (isDead) return;
 
-        GameObject heathPack = Instantiate(healthPackPrefab,transform.position,Quaternion.identity);
         base.Die();
+
+        if (healthPackPrefab == null) return;
+        GameObject heathPack = Instantiate(healthPackPrefab,transform.position,Quaternion.identity);
         Destroy(heathPack,8f);
     }
 }

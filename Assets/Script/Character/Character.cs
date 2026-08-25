@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
+
+[RequireComponent(typeof(Rigidbody2D))]
+
 public abstract class Character : MonoBehaviour, ICharacter
 {
     // ImageType: Filled, Fill Method: Horizontal, Fill Origin: Left, Fill Amount: 1

@@ -13,15 +13,15 @@ public class FrozenEnemy : Enemy
     }
     protected override void Die()
     {
-        CreateFrozen();
+        if (isDead) return;
         base.Die();
+        CreateFrozen();
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player")){
-            CreateFrozen();
-            base.Die();
+            Die();
         }
         
     }

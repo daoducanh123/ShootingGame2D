@@ -1142,6 +1142,7 @@ Transform:
   - {fileID: 1105787671}
   - {fileID: 749896117}
   - {fileID: 1581639922}
+  - {fileID: 1611904639}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &365907903
@@ -18857,6 +18858,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4424171596763574645, guid: b21a1b62a8e185f4aa108ad351b9c88b, type: 3}
   m_PrefabInstance: {fileID: 3912716146070047650}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1611904639 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6478923167350349308, guid: ea28d34a40595464f9df9b88140414e0, type: 3}
+  m_PrefabInstance: {fileID: 5794509911647897445}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1614007638
 GameObject:
   m_ObjectHideFlags: 0
@@ -20069,6 +20075,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 4140598967307305849, guid: 8f1084c98542cb245b2d474d721cccaa, type: 3}
+      propertyPath: maxHealth
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 7294553219600898132, guid: 8f1084c98542cb245b2d474d721cccaa, type: 3}
       propertyPath: m_Name
       value: BossEnemy
@@ -20449,15 +20459,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 294062350}
     m_Modifications:
     - target: {fileID: 6478923167350349308, guid: ea28d34a40595464f9df9b88140414e0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.19894
       objectReference: {fileID: 0}
     - target: {fileID: 6478923167350349308, guid: ea28d34a40595464f9df9b88140414e0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.13284
       objectReference: {fileID: 0}
     - target: {fileID: 6478923167350349308, guid: ea28d34a40595464f9df9b88140414e0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20733,5 +20743,4 @@ SceneRoots:
   - {fileID: 5541361296251037670}
   - {fileID: 1614007640}
   - {fileID: 1044593616}
-  - {fileID: 5794509911647897445}
   - {fileID: 294062350}

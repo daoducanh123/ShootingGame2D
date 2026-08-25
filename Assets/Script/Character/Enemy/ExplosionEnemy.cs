@@ -39,9 +39,10 @@ public class ExplosionEnemy : Enemy
 
     protected override void Die()
     {
+        if (isDead) return;
+        base.Die(); 
         CreateExplosion();
         CreateFire();
-        base.Die(); // die để dưới
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
