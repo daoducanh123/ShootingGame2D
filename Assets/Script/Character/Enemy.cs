@@ -5,7 +5,7 @@ public abstract class Enemy : Character
 {
     [SerializeField] protected float damageEnemyDealt = 4f;
     Vector3 movementDirection = Vector3.zero;
-    public event Action OnEnemyDeath;
+    public static event Action OnEnemyDeath;
 
     protected override void Awake()
     {

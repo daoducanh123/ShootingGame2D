@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     [Header("Text")]
     [SerializeField] private TextMeshProUGUI enemyKilledText;
 
-    private int numberEnemyDie = 0;
+    private int numberEnemyDie = -1;
 
 
     [Header("Energy")]
@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Image energyBar;
 
     [Header("Character")]
-    [SerializeField] private Enemy enemy;
     [SerializeField] private Player player;
     
     private float currentEnergy = 0f;
@@ -56,12 +55,12 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        enemy.OnEnemyDeath += UpdateKillText;
+        Enemy.OnEnemyDeath += UpdateKillText;
         player.OnPlayerDeath += GameOverMenu;
     }    
     private void OnDisable()
     {
-        enemy.OnEnemyDeath -= UpdateKillText;
+        Enemy.OnEnemyDeath -= UpdateKillText;
         player.OnPlayerDeath -= GameOverMenu;
     }
 
