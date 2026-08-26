@@ -29,9 +29,11 @@ A 2D top-down shooter developed with **Unity and C#**.
 - Object-Oriented Programming (OOP)
 - Object Pooling
 - Singleton Pattern
+- Observer Pattern
 - State Machine
 - Coroutines
 - Interfaces
+
 
 ## 🏗️ Architecture
 
