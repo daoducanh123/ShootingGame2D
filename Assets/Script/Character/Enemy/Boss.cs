@@ -1,6 +1,6 @@
 using UnityEngine;
+using System;
 using System.Collections;
-
 
 
 public class Boss : Enemy
@@ -13,7 +13,8 @@ public class Boss : Enemy
     [Header("Prefabs")]
     [SerializeField] private GameObject enemyBulletPrefab;
     [SerializeField] private GameObject miniEnemyPrefab;
-    [SerializeField] private GameObject keyPrefab;
+
+    public event Action OnBossDeath;
 
     protected override void Start()
     {
@@ -26,7 +27,7 @@ public class Boss : Enemy
         while (Player.Instance != null) 
         {
             yield return new WaitForSeconds(intervalSkillsTime);
-            int skill = Random.Range(0, 4);
+            int skill = UnityEngine.Random.Range(0, 4);
             switch (skill)
             {
                 case 0:
@@ -63,7 +64,7 @@ public class Boss : Enemy
     {
         if (Player.Instance == null) return;
 
-        Vector2 teleportOffset =  Random.insideUnitCircle * teleportRadius; 
+        Vector2 teleportOffset =  UnityEngine.Random.insideUnitCircle * teleportRadius; 
         Vector2 playerPos = Player.Instance.transform.position;
         transform.position = playerPos + teleportOffset;    
 
@@ -78,8 +79,7 @@ public class Boss : Enemy
     {
         if (isDead) return;
         base.Die();
+        OnBossDeath?.Invoke();
 
-        if (keyPrefab == null) return;
-        Instantiate(keyPrefab, transform.position, Quaternion.identity);
     }
 }

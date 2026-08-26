@@ -1,9 +1,11 @@
+using System.Diagnostics.Tracing;
 using UnityEngine;
-
+using System;
 public abstract class Enemy : Character
 {
     [SerializeField] protected float damageEnemyDealt = 4f;
-
+    Vector3 movementDirection = Vector3.zero;
+    public event Action OnEnemyDeath;
 
     protected override void Awake()
     {
@@ -17,7 +19,6 @@ public abstract class Enemy : Character
         if (Player.Instance != null) { // ko check luc player die la null
             movementDirection = Player.Instance.transform.position - transform.position;
         }
-
     }
 
     protected virtual void FixedUpdate()
@@ -25,9 +26,7 @@ public abstract class Enemy : Character
         EnemyMovement();
     }
 
-
-    // ================ ENEMY MOVEMENT  =================
-    Vector3 movementDirection = Vector3.zero;
+    #region EnemyMovement
     protected void EnemyMovement()
     {
         // neu ko check null thi se bi loi khi enemy spawn ma player chua spawn
@@ -44,18 +43,8 @@ public abstract class Enemy : Character
             spriteRenderer.flipX = true;
         }
     }
-
-    protected override void Die()
-    {
-        if (isDead) return;
-        isDead = true;
-        
-        Destroy(gameObject);
-        if (gameManager == null) return;
-        gameManager.EnemyKilled(1);
-    }
-
-
+    #endregion
+    
     #region Combat
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
@@ -89,6 +78,13 @@ public abstract class Enemy : Character
             if (Player.Instance == null) return;
             Player.Instance.SetDefaultColor();
         }
+    }
+
+    protected override void Die()
+    {
+        if (isDead) return;
+        base.Die();
+        OnEnemyDeath?.Invoke();
     }
     #endregion
 

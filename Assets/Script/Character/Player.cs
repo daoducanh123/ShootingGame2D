@@ -1,12 +1,17 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.XR;
-
+using System;
 public class Player : Character
 {
     private Vector3 input;
+    
+    #region StateMachine Pattern
     private enum PlayerState { Running, Idle };
     private PlayerState currentState;
+    #endregion
 
+    #region Singleton Pattern
     public static Player Instance { get; private set; }
     protected override void Awake()
     {
@@ -17,8 +22,12 @@ public class Player : Character
             return;
         }
         Instance = this;
-
     }
+    #endregion
+
+    #region Observer Pattern
+    public event Action OnPlayerDeath;
+    #endregion
 
     protected override void Update()
     {   
@@ -94,7 +103,6 @@ public class Player : Character
         }
     }
 
-
     private void HandleIdleState()
     {
         animator.SetBool("isIdle", true);
@@ -109,8 +117,9 @@ public class Player : Character
 
     protected override void Die()
     {
+        if(isDead) return;
+        
         base.Die();
-        if (gameManager == null) return;
-        gameManager.GameOverMenu();
+        OnPlayerDeath?.Invoke();
     }
 }

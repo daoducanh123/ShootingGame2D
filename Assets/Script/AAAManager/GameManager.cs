@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float maxEnergy = 10f;
     [SerializeField] private Image energyBar;
 
+    [Header("Character")]
+    [SerializeField] private Enemy enemy;
+    [SerializeField] private Player player;
+    
     private float currentEnergy = 0f;
 
     private void Awake()
@@ -43,12 +47,24 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         UpdateEnergyBar();
-        UpdateEnemyKilledText();
+        UpdateKillText();
         MainMenu();
 
         if (boss == null) return;
         boss.gameObject.SetActive(false);
     }
+
+    private void OnEnable()
+    {
+        enemy.OnEnemyDeath += UpdateKillText;
+        player.OnPlayerDeath += GameOverMenu;
+    }    
+    private void OnDisable()
+    {
+        enemy.OnEnemyDeath -= UpdateKillText;
+        player.OnPlayerDeath -= GameOverMenu;
+    }
+
 
     #region Energy Bar
     public void IncreaseCurrentEnergy(float valueTaken)
@@ -79,16 +95,10 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Kill Text
-    public void EnemyKilled(int num)
+
+    private void UpdateKillText()
     {
-        numberEnemyDie += num;
-
-        UpdateEnemyKilledText();
-    }
-
-
-    private void UpdateEnemyKilledText()
-    {
+        numberEnemyDie += 1;
         if (enemyKilledText == null)
         {
             return;
@@ -119,7 +129,6 @@ public class GameManager : MonoBehaviour
         gameWinMenu.SetActive(false);
 
         Time.timeScale = 0f;
-
     }
     public void GameOverMenu()
     {
@@ -131,7 +140,6 @@ public class GameManager : MonoBehaviour
         gameWinMenu.SetActive(false);
 
         Time.timeScale = 0f;
-
     }
 
     public void StartGame()
@@ -143,8 +151,8 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         gameWinMenu.SetActive(false);
         Time.timeScale = 1f;
-
     }
+
     public void ResumeGame()
     {
         if (mainMenu == null || gameOverMenu == null || pauseMenu == null || gameWinMenu == null) return;
@@ -155,7 +163,6 @@ public class GameManager : MonoBehaviour
         gameWinMenu.SetActive(false);
 
         Time.timeScale = 1f;
-
     }
 
     public void GameWinMenu()
@@ -168,7 +175,6 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false);
 
         Time.timeScale = 0f;
-
     }
 
     #endregion
